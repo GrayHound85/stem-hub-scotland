@@ -1,0 +1,26 @@
+teachers:
+    information on what they can do
+    what the students can do
+    contact there department
+
+    how to event organise
+
+
+event partner:
+    information on how to run events
+    contaccting evetns majors
+
+
+
+
+volleteers:
+    information on what they do
+    how to train if needed
+    what else they can do
+    contacts
+
+
+staudents:
+    information on what they can do
+    how to take part
+    where to go to join

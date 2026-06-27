@@ -27,7 +27,7 @@ Volunteers find:
 - Contacts
 
 Event Orginisers find:
-- volunteers
+- Volunteers
 - Help teachers
 
 

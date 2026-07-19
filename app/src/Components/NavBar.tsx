@@ -6,7 +6,7 @@ function NavBar() {
     "About",
   ];
   return (
-    <div className="flex items-center justify-between bg-white border-b-2 border-gray-300 mx-5 p-1 px-32 h-20">
+    <div className="flex items-center justify-between bg-white border-b-2 border-gray-300 mx-5 p-1 px-20 h-20">
       <div className="flex-col text-xl">
         <div className="flex gap-1">
           <h1 className="text-black font-semibold">STEM</h1>
@@ -18,15 +18,15 @@ function NavBar() {
 
       <div className="flex gap-2">
         {value.map((item, index) => (
-          <p
+          <div
             key={index}
-            className="text-black font-semibold border-2 border-gray-300 p-1 px-5 rounded-lg">
-            {item}
-          </p>
+            className="flex justify-center w-40 border-2 border-gray-300 p-1 rounded-lg">
+            <p className="text-black font-semibold">{item}</p>
+          </div>
         ))}
-      </div>
-      <div>
-        <h1 className="text-white bg-blue-700 rounded-lg p-1 px-5">Sign In</h1>
+        <div className="flex justify-center text-white bg-blue-700 w-40 p-1 ml-12 rounded-lg">
+          <h1> Sign In</h1>
+        </div>
       </div>
     </div>
   );

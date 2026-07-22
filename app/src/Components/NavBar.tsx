@@ -9,13 +9,15 @@ function NavBar() {
   ];
   return (
     <div className="flex items-center justify-between bg-white border-b-2 border-gray-300 mx-5 p-1 px-20 h-20">
-      <div className="flex-col text-xl">
-        <div className="flex gap-1">
-          <h1 className="text-black font-semibold">STEM</h1>
-          <h1 className="text-blue-800 font-semibold">Scotland</h1>
+      <Link href={"/"}>
+        <div className="flex-col text-xl">
+          <div className="flex gap-1">
+            <h1 className="text-black font-semibold">STEM</h1>
+            <h1 className="text-blue-800 font-semibold">Scotland</h1>
+          </div>
+          <h1 className="text-gray-400 text-lg font-semibold">HUB</h1>
         </div>
-        <h1 className="text-gray-400 text-lg font-semibold">HUB</h1>
-      </div>
+      </Link>
 
       <div className="flex gap-2">
         {value.map((item, index) => (

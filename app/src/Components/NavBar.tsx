@@ -36,7 +36,7 @@ async function NavBar() {
   ];
   return (
     <div className="flex items-center justify-between bg-white border-b-2 border-gray-300 mx-5 p-1 px-20 h-20">
-      <Link href={"/"}>
+      <Link href={"/"} className="hover:bg-blue-50 rounded-sm">
         <div className="flex-col text-xl">
           <div className="flex gap-1">
             <h1 className="text-black font-semibold">STEM</h1>
@@ -52,14 +52,14 @@ async function NavBar() {
             requirement && (
               <div
                 key={index}
-                className="flex justify-center w-40 border-2 border-gray-300 p-1 rounded-lg">
+                className="flex justify-center w-40 border-2 border-gray-300 p-1 rounded-lg hover:bg-blue-50">
                 <Link href={link} className="text-black font-semibold">
                   {display}
                 </Link>
               </div>
             ),
         )}
-        <div className="flex justify-center text-white bg-blue-700 w-40 p-1 ml-12 rounded-lg">
+        <div className="flex justify-center text-white w-40 p-1 ml-12 rounded-lg bg-blue-700 hover:bg-blue-800">
           <Link href="\login"> Login/{"\n"} Signup</Link>
         </div>
       </div>

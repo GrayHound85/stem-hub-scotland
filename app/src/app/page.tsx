@@ -1,3 +1,4 @@
+import Link from "next/link";
 import NavBar from "../Components/NavBar";
 import "./global.css";
 
@@ -12,14 +13,22 @@ export default function Home() {
           <h1 className="text-6xl">Discover</h1>
           <h1 className="text-6xl">Scotland's STEM</h1>
           <h1 className="text-6xl mb-4">Opportunities</h1>
-          <p>
+          <p className="mb-6">
             The central hub for scottish teachers, students, volunteers and
             event organisers to discover opportunities, get critical information
             and meet others.
           </p>
           <div className="flex flex-row">
-            <h1> button 1</h1>
-            <h1> button 2</h1>
+            <div className="flex justify-center items-center w-1/2 rounded-md bg-blue-700 hover:bg-blue-800 m-2 min-h-10">
+              <Link href="/event_calendar" className="text-white">
+                Browse Events
+              </Link>
+            </div>
+            <div className="flex justify-center items-center w-1/2 rounded-md bg-blue-700 hover:bg-blue-800 m-2 min-h-10">
+              <Link href="/explore_programs" className="text-white">
+                Explore Programs
+              </Link>
+            </div>
           </div>
         </div>
       </div>

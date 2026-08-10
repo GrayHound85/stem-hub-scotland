@@ -1,4 +1,4 @@
-export async function check_valid(
+type places = {
   value:
     | "About"
     | "Dashboard"
@@ -6,8 +6,10 @@ export async function check_valid(
     | "Explore Programs"
     | "Student Forums"
     | "Volunteering"
-    | "Login",
-) {
+    | "Login";
+};
+
+export async function check_valid({ value }: places) {
   switch (value) {
     case "About":
       return true;
@@ -25,3 +27,5 @@ export async function check_valid(
       return true;
   }
 }
+
+export async function be_here({ value }: places) {}

@@ -1,37 +1,48 @@
 import Link from "next/link";
-import { check_valid } from "./GetAuth";
+import { type Role, get_role } from "./GetAuth";
 
 async function NavBar() {
-  const value: { display: string; link: string; requirement: boolean }[] = [
+  const value: {
+    display: string;
+    link: string;
+    roles_needed: Role[];
+    role: Role;
+  }[] = [
     {
       display: "About",
       link: "/about",
-      requirement: await check_valid("About" as const),
+      roles_needed: [],
+      role: await get_role(),
     },
     {
       display: "Dashboard",
-      link: "/dashboard",
-      requirement: await check_valid("Dashboard" as const),
+      link: "dashboard",
+      roles_needed: [],
+      role: await get_role(),
     },
     {
       display: "Event Calendar",
       link: "/event_calendar",
-      requirement: await check_valid("Event Calendar" as const),
+      roles_needed: [],
+      role: await get_role(),
     },
     {
       display: "Explore Programs",
       link: "/explore_programs",
-      requirement: await check_valid("Explore Programs" as const),
+      roles_needed: [],
+      role: await get_role(),
     },
     {
       display: "Student Forums",
       link: "/student_forums",
-      requirement: await check_valid("Student Forums" as const),
+      roles_needed: ["student"],
+      role: await get_role(),
     },
     {
       display: "Volunteering",
       link: "/volunteering",
-      requirement: await check_valid("Volunteering" as const),
+      roles_needed: ["volunteer"],
+      role: await get_role(),
     },
   ];
   return (
@@ -47,9 +58,10 @@ async function NavBar() {
       </Link>
 
       <div className="flex gap-2">
-        {value.map(
-          ({ display, link, requirement }, index) =>
-            requirement && (
+        {value.map(({ display, link, roles_needed, role }, index) => {
+          console.log(role);
+          return (
+            (roles_needed.length === 0 || roles_needed.includes(role)) && (
               <div
                 key={index}
                 className="flex justify-center w-40 border-2 border-gray-300 p-1 rounded-lg hover:bg-blue-50">
@@ -57,8 +69,9 @@ async function NavBar() {
                   {display}
                 </Link>
               </div>
-            ),
-        )}
+            )
+          );
+        })}
         <div className="flex justify-center text-white w-40 p-1 ml-12 rounded-lg bg-blue-700 hover:bg-blue-800">
           <Link href="\login"> Login/{"\n"} Signup</Link>
         </div>

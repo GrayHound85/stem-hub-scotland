@@ -1,8 +1,9 @@
 import Link from "next/link";
-import NavBar from "../Components/NavBar";
+import { requireRole } from "@/Components/GetAuth";
 import "./global.css";
 
-export default function Home() {
+export default async function Home() {
+  await requireRole([]);
   return (
     <main
       className="

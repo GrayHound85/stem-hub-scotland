@@ -1,31 +1,54 @@
-type places = {
-  value:
-    | "About"
-    | "Dashboard"
-    | "Event Calendar"
-    | "Explore Programs"
-    | "Student Forums"
-    | "Volunteering"
-    | "Login";
-};
+import { createClient } from "@/lib/supabse/server";
+import { assert } from "console";
+import { redirect } from "next/navigation";
 
-export async function check_valid({ value }: places) {
-  switch (value) {
-    case "About":
-      return true;
-    case "Dashboard":
-      return true;
-    case "Event Calendar":
-      return true;
-    case "Explore Programs":
-      return false;
-    case "Student Forums":
-      return true;
-    case "Volunteering":
-      return true;
-    case "Login":
-      return true;
+// type places =
+//   | "About"
+//   | "Dashboard"
+//   | "Event Calendar"
+//   | "Explore Programs"
+//   | "Student Forums"
+//   | "Volunteering"
+//   | "Login";
+
+export type Role =
+  | "anon"
+  | "student"
+  | "teacher"
+  | "event_organiser"
+  | "volunteer";
+
+export async function get_role(): Promise<Role> {
+  const supabase = await createClient();
+  const {
+    data: { user: user },
+    error: user_error,
+  } = await supabase.auth.getUser();
+
+  if (user_error || !user) {
+    console.log(user_error);
+    return "anon" as Role;
   }
+  const { data, error: select_error } = await supabase
+    .from("Users")
+    .select()
+    .eq("id", user.id)
+    .single();
+  if (select_error || !data) {
+    assert(!select_error, "somehow there's a users without a table WTF");
+    console.log(select_error);
+    return "anon" as Role;
+  }
+  const result = data.role as Role;
+  return result;
 }
 
-export async function be_here({ value }: places) {}
+export async function requireRole(allowedRoles: Role[]) {
+  const role = await get_role();
+
+  if (allowedRoles.length !== 0 && !allowedRoles.includes(role)) {
+    redirect("/");
+  }
+
+  return role;
+}

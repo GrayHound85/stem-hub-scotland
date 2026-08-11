@@ -25,10 +25,18 @@ export async function get_role(): Promise<Role> {
     error: user_error,
   } = await supabase.auth.getUser();
 
-  if (user_error || !user) {
-    console.log(user_error);
+  if (user_error) {
+    if (user_error.name !== "AuthSessionMissingError") {
+      console.log("mistake were made:", user_error);
+    }
     return "anon" as Role;
   }
+
+  // impossible to reach code ignore
+  if (!user) {
+    return "anon";
+  }
+
   const { data, error: select_error } = await supabase
     .from("Users")
     .select()

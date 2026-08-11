@@ -59,7 +59,6 @@ async function NavBar() {
 
       <div className="flex gap-2">
         {value.map(({ display, link, roles_needed, role }, index) => {
-          console.log(role);
           return (
             (roles_needed.length === 0 || roles_needed.includes(role)) && (
               <div
@@ -72,8 +71,13 @@ async function NavBar() {
             )
           );
         })}
+
         <div className="flex justify-center text-white w-40 p-1 ml-12 rounded-lg bg-blue-700 hover:bg-blue-800">
-          <Link href="\login"> Login/{"\n"} Signup</Link>
+          {(await get_role()) !== "anon" ? (
+            <Link href="\profile"> Profile</Link>
+          ) : (
+            <Link href="\login"> Login/ Signup</Link>
+          )}
         </div>
       </div>
     </div>

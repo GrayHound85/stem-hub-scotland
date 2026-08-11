@@ -1,14 +1,33 @@
 "use client";
-import { type SubmitEvent } from "react";
+import { createClient } from "@/lib/supabse/client";
+import { redirect } from "next/navigation";
+import { useEffect, type SubmitEvent } from "react";
 
 export default function LoginForm() {
-  function clicked(event: SubmitEvent<HTMLFormElement>) {
+  const supabase = createClient();
+
+  async function clicked(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const value = new FormData(event.currentTarget);
+    const from_data = new FormData(event.currentTarget);
 
-    console.log(value.get("email"));
-    console.log(value.get("password"));
+    const email = from_data.get("email")?.toString();
+    const password = from_data.get("password")?.toString();
+
+    if (!email || !password) {
+      return;
+    }
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error || !data) {
+      console.log("sign in error:", error);
+      return;
+    }
+    redirect("/");
   }
 
   return (

@@ -1,11 +1,7 @@
-//  ```tsx
-
-import { get_role, requireRole } from "@/Components/GetAuth";
-import { redirect } from "next/navigation";
+import { requireRole } from "@/Components/GetAuth";
 import LoginForm from "./LoginForm";
 
 export default async function Login() {
-  requireRole(["anon"]);
+  await requireRole(["anon"]);
   return <LoginForm />;
 }
-//  ```

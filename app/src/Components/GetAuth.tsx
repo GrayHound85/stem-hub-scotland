@@ -1,22 +1,7 @@
 import { createClient } from "@/lib/supabse/server";
 import { assert } from "console";
 import { redirect } from "next/navigation";
-
-// type places =
-//   | "About"
-//   | "Dashboard"
-//   | "Event Calendar"
-//   | "Explore Programs"
-//   | "Student Forums"
-//   | "Volunteering"
-//   | "Login";
-
-export type Role =
-  | "anon"
-  | "student"
-  | "teacher"
-  | "event_organiser"
-  | "volunteer";
+import { type Role, roles } from "@/types/roles";
 
 export async function get_role(): Promise<Role> {
   const supabase = await createClient();

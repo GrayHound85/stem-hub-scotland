@@ -61,13 +61,12 @@ async function NavBar() {
         {value.map(({ display, link, roles_needed, role }, index) => {
           return (
             (roles_needed.length === 0 || roles_needed.includes(role)) && (
-              <div
+              <Link
+                href={link}
                 key={index}
                 className="flex justify-center w-40 border-2 border-gray-300 p-1 rounded-lg hover:bg-blue-50">
-                <Link href={link} className="text-black font-semibold">
-                  {display}
-                </Link>
-              </div>
+                <div className="text-black font-semibold">{display}</div>
+              </Link>
             )
           );
         })}

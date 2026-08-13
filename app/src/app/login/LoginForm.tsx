@@ -1,7 +1,8 @@
 "use client";
 import { createClient } from "@/lib/supabse/client";
 import { redirect } from "next/navigation";
-import { useEffect, type SubmitEvent } from "react";
+import { type SubmitEvent } from "react";
+import Link from "next/link";
 
 export default function LoginForm() {
   const supabase = createClient();
@@ -63,6 +64,13 @@ export default function LoginForm() {
             required
           />
         </div>
+        <div className="flex flex-row pb-3 justify-center">
+          <p className="mr-5">Don't have an account</p>
+          <Link href="/sign_up" className="text-blue-500 underline">
+            Create One
+          </Link>
+        </div>
+
         <div className="flex justify-center border rounded-xl bg-blue-300 hover:bg-blue-500">
           <button type="submit" className="text-2xl font-bold bg-center ">
             Submit

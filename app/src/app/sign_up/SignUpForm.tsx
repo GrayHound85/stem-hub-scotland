@@ -1,5 +1,5 @@
 "use client";
-import { createClient } from "@l/supabse/client";
+import { createClient } from "@l/supabase/client";
 import { redirect } from "next/navigation";
 import { useState, type SubmitEvent } from "react";
 import { type Role, roles, isRole } from "@t/roles";

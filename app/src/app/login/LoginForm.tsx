@@ -1,5 +1,5 @@
 "use client";
-import { createClient } from "@/lib/supabse/client";
+import { createClient } from "@/lib/supabase/client";
 import { redirect } from "next/navigation";
 import { type SubmitEvent } from "react";
 import Link from "next/link";

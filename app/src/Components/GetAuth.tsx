@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabse/server";
+import { createClient } from "@/lib/supabase/server";
 import { assert } from "console";
 import { redirect } from "next/navigation";
 import { type Role, roles } from "@/types/roles";

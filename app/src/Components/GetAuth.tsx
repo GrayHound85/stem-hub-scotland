@@ -3,6 +3,7 @@ import { assert } from "console";
 import { redirect } from "next/navigation";
 import { type Role, roles } from "@/types/roles";
 
+// function that returns the current Role of the logged in users. If there isn't a user logged in returns anon (anonymous)
 export async function get_role(): Promise<Role> {
   const supabase = await createClient();
   const {
@@ -27,6 +28,7 @@ export async function get_role(): Promise<Role> {
     .select()
     .eq("id", user.id)
     .single();
+
   if (select_error || !data) {
     assert(!select_error, "somehow there's a users without a table WTF");
     console.log(select_error);
@@ -36,7 +38,8 @@ export async function get_role(): Promise<Role> {
   return result;
 }
 
-export async function requireRole(allowedRoles: Role[]) {
+// checks if a role is in a list of roles if not and the list has at least one role in it, then it redirects to home page. Is to be used at the start of pages to check if they have the required role
+export async function requireRole(allowedRoles: Role[]): Promise<Role> {
   const role = await get_role();
 
   if (allowedRoles.length !== 0 && !allowedRoles.includes(role)) {

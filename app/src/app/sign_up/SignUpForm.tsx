@@ -5,9 +5,12 @@ import { useState, type SubmitEvent } from "react";
 import { type Role, roles, isRole } from "@t/roles";
 import Link from "next/link";
 
+// client based signup form
 export default function SignUpForm() {
   const supabase = createClient();
 
+  // the on click event signs them up and adds them to the database.
+  // BAD Error handling
   async function clicked(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
 

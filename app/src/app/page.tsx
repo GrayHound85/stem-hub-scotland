@@ -3,7 +3,7 @@ import { requireRole } from "@/Components/GetAuth";
 import "./global.css";
 
 export default async function Home() {
-  await requireRole([]);
+  await requireRole();
   return (
     <main
       className="

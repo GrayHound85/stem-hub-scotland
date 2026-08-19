@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { type Role, get_role } from "./GetAuth";
+import { type Role } from "@t/roles";
+import { get_role } from "./GetAuth";
+import { get } from "http";
 
 async function NavBar() {
   const value: {
@@ -70,14 +72,19 @@ async function NavBar() {
             )
           );
         })}
-
-        <div className="flex justify-center text-white w-40 p-1 ml-12 rounded-lg bg-blue-700 hover:bg-blue-800">
-          {(await get_role()) !== "anon" ? (
-            <Link href="\profile"> Profile</Link>
-          ) : (
-            <Link href="\login"> Login/ Signup</Link>
-          )}
-        </div>
+        {(await get_role()) !== "anon" ? (
+          <Link
+            href="\profile"
+            className="flex justify-center text-white w-40 p-1 ml-12 rounded-lg bg-blue-700 hover:bg-blue-800">
+            Profile
+          </Link>
+        ) : (
+          <Link
+            href="\login"
+            className="flex justify-center text-white w-40 p-1 ml-12 rounded-lg bg-blue-700 hover:bg-blue-800">
+            Login/ Signup
+          </Link>
+        )}
       </div>
     </div>
   );

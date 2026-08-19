@@ -1,7 +1,7 @@
 import { requireRole } from "@/Components/GetAuth";
 
 async function EventCalendar() {
-  await requireRole([]);
+  await requireRole();
   return <div>EventCalendar</div>;
 }
 

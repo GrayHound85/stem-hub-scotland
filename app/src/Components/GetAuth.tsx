@@ -38,13 +38,14 @@ export async function get_role(): Promise<Role> {
   return result;
 }
 
-// checks if a role is in a list of roles if not and the list has at least one role in it, then it redirects to home page. Is to be used at the start of pages to check if they have the required role
-export async function requireRole(allowedRoles: Role[]): Promise<Role> {
+// checks if the current role is in a list of roles if not then it redirects to home page. you can leave empty to not have any requirements. Is to be used at the start of pages to check if they have the required role
+export async function requireRole(allowedRoles?: Role[]): Promise<Role> {
   const role = await get_role();
-
-  if (allowedRoles.length !== 0 && !allowedRoles.includes(role)) {
+  if (!allowedRoles) {
+    return role;
+  }
+  if (!allowedRoles.includes(role)) {
     redirect("/");
   }
-
   return role;
 }

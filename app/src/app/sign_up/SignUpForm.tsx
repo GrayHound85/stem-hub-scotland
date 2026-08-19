@@ -3,7 +3,6 @@ import { createClient } from "@l/supabase/client";
 import { redirect } from "next/navigation";
 import { useState, type SubmitEvent } from "react";
 import { type Role, roles, isRole } from "@t/roles";
-import Link from "next/link";
 
 // client based signup form
 export default function SignUpForm() {
@@ -62,7 +61,7 @@ export default function SignUpForm() {
   const [search, setSearch] = useState("");
   const [searchFocus, setSearchFocus] = useState(false);
 
-  const options = roles;
+  const options = roles.filter((value) => value !== "anon");
 
   const filteredOptions = options.filter(
     (option) => option.toLowerCase().includes(search.toLowerCase()) || !search,
